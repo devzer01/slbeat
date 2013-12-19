@@ -3,6 +3,7 @@
 	<name>slbeat</name>
 	<comment></comment>
 	<projects>
+		<project>candy</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>
