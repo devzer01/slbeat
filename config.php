@@ -1,5 +1,10 @@
 <?php
 
+define('SLB_DB', 'slbeat');
+define('SLB_DBHOST', 'localhost');
+define('SLB_DBUSER', 'root');
+define('SLB_DBPASS', '');
+
 define('APP_ID', "386041674873265");
 define('APP_SECRET', "da597703633cc8cefb779636120ba6f1");
 define('MY_URL', "http://lab.slbeat.com:10045/fblogin");
