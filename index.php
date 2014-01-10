@@ -96,6 +96,20 @@ $app->get('/notregister', function () use ($app, $smarty) {
 	$smarty->display('login_with_facebook.tpl');
 });
 
+$app->get('/read/:type', function ($type) use ($smarty) 
+{
+	$template = 'read_default.tpl';	
+	switch ($type) {
+		case 'chat':
+			$template = 'read_chat.tpl';
+			break;
+		default:
+			break;		
+	}
+	
+	$smarty->display($template);
+});
+
 $app->get('/', function () use ($app, $smarty) {
 	$smarty->display('index.tpl');
 });
