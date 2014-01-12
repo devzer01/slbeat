@@ -167,11 +167,23 @@ $app->get('/fblogin', function () use ($app, $smarty)
 	return true;
 });
 
-$app->get('/step2', function () use ($smarty) {
+$app->get('/step2', function () use ($smarty, $app) {
 	
 	if (isset($_SESSION['error'])) {
 		$smarty->assign('error', $_SESSION['error']);
 		unset($_SESSION['error']);
+	}
+	
+	$id = $_SESSION['user_id'];
+	$sql = "SELECT step2 FROM user WHERE id = :id ";
+	$sth = $pdo->prepare($sql);
+	$sth->execute(array(':id' => $id));
+	
+	$of_user = $sth->fetch(PDO::FETCH_ASSOC);
+	
+	if ($of_user['step2'] == 1) {
+		$app->redirect("/home");
+		return false;
 	}
 	
 	$smarty->display('step2.tpl');
