@@ -61,9 +61,9 @@
               </div>
                   <div class="collapse navbar-collapse navbar-ex1-collapse ">
                 <ul class="nav navbar-nav pull-right">
-                      <li class="active"><a href="#">Home</a></li>
-                      <li><a href="#">Intro</a></li>
-                      <li><a href="#">News</a></li>
+                      <li class="active"><a href="/">Home</a></li>
+                      <li><a href="/chat">Chat</a></li>
+                      <li><a href="/social">Social</a></li>
                     </ul>
               </div>
                 </nav>
