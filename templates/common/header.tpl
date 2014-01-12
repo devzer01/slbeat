@@ -28,9 +28,18 @@
           <div class="col-md-7">
         <div class="top-log-menu pull-right">
               <ul class="menu-one">
-            <li><a href="/dashboard">Member area</a> </li>
+            	{if (isset($smarty.session.auth) && $smarty.session.auth eq "1")}
+            		<li><a href="/home">{$smarty.session.username}</a> </li>
+            	{else}
+            		<li><a href="/home">Login</a> </li>
+            	{/if}
             <li><span> | </span> </li>
-            <li> <a href="/register">Register</a></li>
+            	{if (isset($smarty.session.auth) && $smarty.session.auth eq "1")}
+            		<li><a href="/logout">Logout</a> </li>
+            	{else}
+            		<li> <a href="/register">Register</a></li>
+            	{/if}
+            	
           </ul>
             </div>
       </div>
@@ -53,21 +62,19 @@
                   <div class="collapse navbar-collapse navbar-ex1-collapse ">
                 <ul class="nav navbar-nav pull-right">
                       <li class="active"><a href="#">Home</a></li>
-                      <li><a href="#">Features</a></li>
-                      <li><a href="#">Joomla</a></li>
-                      <li><a href="#">Extension</a></li>
-                      <li><a href="#">JomSocial</a></li>
+                      <li><a href="#">Intro</a></li>
+                      <li><a href="#">News</a></li>
                     </ul>
               </div>
                 </nav>
           </div>
               <div class="count-menu">
-            <div class="row">
+            	<!-- <div class="row">
                   <div class="col-md-3"> <a href="#"> Toatal Groups <span class="ball">10</span> </a> </div>
                   <div class="col-md-3"> <a href="#"> Toatal Photos <span class="ball">15</span> </a> </div>
                   <div class="col-md-3"> <a href="#"> Toatal Vedios <span class="ball">25</span> </a> </div>
                   <div class="col-md-3"> <a href="#"> Toatal Events <span class="ball">45</span> </a> </div>
-                </div>
+                </div> -->
           </div>
             </div>
       </div>

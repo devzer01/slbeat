@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1-DEV, created on 2014-01-10 17:37:32
+<?php /* Smarty version Smarty-3.1.16, created on 2014-01-12 15:06:06
          compiled from "templates/common/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:155378902452cfcd6c9200b9-14314856%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a679c2441bc57cd8a39726a7e94991c3039e7906' => 
     array (
       0 => 'templates/common/header.tpl',
-      1 => 1389349315,
+      1 => 1389513961,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
-  'version' => 'Smarty-3.1-DEV',
+  'version' => 'Smarty-3.1.16',
   'unifunc' => 'content_52cfcd6c945797_77328104',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_52cfcd6c945797_77328104')) {function content_52cfcd6c945797_77328104($_smarty_tpl) {?><!DOCTYPE html>
 <html>
@@ -49,9 +49,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           <div class="col-md-7">
         <div class="top-log-menu pull-right">
               <ul class="menu-one">
-            <li><a href="/dashboard">Member area</a> </li>
+            	<?php if ((isset($_SESSION['auth'])&&$_SESSION['auth']=="1")) {?>
+            		<li><a href="/home"><?php echo $_SESSION['username'];?>
+</a> </li>
+            	<?php } else { ?>
+            		<li><a href="/home">Login</a> </li>
+            	<?php }?>
             <li><span> | </span> </li>
-            <li> <a href="/register">Register</a></li>
+            	<?php if ((isset($_SESSION['auth'])&&$_SESSION['auth']=="1")) {?>
+            		<li><a href="/logout">Logout</a> </li>
+            	<?php } else { ?>
+            		<li> <a href="/register">Register</a></li>
+            	<?php }?>
+            	
           </ul>
             </div>
       </div>
@@ -74,21 +84,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                   <div class="collapse navbar-collapse navbar-ex1-collapse ">
                 <ul class="nav navbar-nav pull-right">
                       <li class="active"><a href="#">Home</a></li>
-                      <li><a href="#">Features</a></li>
-                      <li><a href="#">Joomla</a></li>
-                      <li><a href="#">Extension</a></li>
-                      <li><a href="#">JomSocial</a></li>
+                      <li><a href="#">Intro</a></li>
+                      <li><a href="#">News</a></li>
                     </ul>
               </div>
                 </nav>
           </div>
               <div class="count-menu">
-            <div class="row">
+            	<!-- <div class="row">
                   <div class="col-md-3"> <a href="#"> Toatal Groups <span class="ball">10</span> </a> </div>
                   <div class="col-md-3"> <a href="#"> Toatal Photos <span class="ball">15</span> </a> </div>
                   <div class="col-md-3"> <a href="#"> Toatal Vedios <span class="ball">25</span> </a> </div>
                   <div class="col-md-3"> <a href="#"> Toatal Events <span class="ball">45</span> </a> </div>
-                </div>
+                </div> -->
           </div>
             </div>
       </div>

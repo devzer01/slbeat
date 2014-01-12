@@ -15,13 +15,6 @@
         </div>
   </div>
     </div>
-    <script type='text/javascript'>
-    	$(function () {
-    		$("#read_chat").click(function (e) {
-    			e.preventDefault();
-    			document.location.href = "/read/chat";
-    		});
-    	});
-    </script>
+    
 </body>
 </html>

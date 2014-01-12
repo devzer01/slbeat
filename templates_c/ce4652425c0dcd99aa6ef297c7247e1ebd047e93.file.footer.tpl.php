@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1-DEV, created on 2014-01-10 17:37:32
+<?php /* Smarty version Smarty-3.1.16, created on 2014-01-12 15:16:42
          compiled from "templates/common/footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:54732213952cfcd6c9a0f92-07243323%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ce4652425c0dcd99aa6ef297c7247e1ebd047e93' => 
     array (
       0 => 'templates/common/footer.tpl',
-      1 => 1389350127,
+      1 => 1389514288,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
-  'version' => 'Smarty-3.1-DEV',
+  'version' => 'Smarty-3.1.16',
   'unifunc' => 'content_52cfcd6c9a2722_60572826',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_52cfcd6c9a2722_60572826')) {function content_52cfcd6c9a2722_60572826($_smarty_tpl) {?></div>
     </div>
@@ -36,13 +36,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         </div>
   </div>
     </div>
-    <script type='text/javascript'>
-    	$(function () {
-    		$("#read_chat").click(function (e) {
-    			e.preventDefault();
-    			document.location.href = "/read/chat";
-    		});
-    	});
-    </script>
+    
 </body>
 </html><?php }} ?>
