@@ -5,7 +5,7 @@
                       <div class="media-body">
                     <h4 class="media-heading"><span class="icon"><img src="img/chat.png"></span><a href="/chat">Chat Room</a></h4>
                     <p>Join the conversation with our fellow community members in the chat room</p>
-                    <button id='read_chat' type="button" class="btn btn-primary blue">Read More</button>
+                    <button id='read_chat' type="button" class="btn btn-primary blue">Chat Now</button>
                   </div>
                     </div>
               </div>
@@ -25,7 +25,7 @@
     	$(function () {
     		$("#read_chat").click(function (e) {
     			e.preventDefault();
-    			document.location.href = "/read/chat";
+    			document.location.href = "/chat";
     		});
     	});
 </script>
