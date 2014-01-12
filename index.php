@@ -290,10 +290,21 @@ $app->get('/test', function () {
 });
 
 $app->get("/social", function () use ($smarty) {
+	
+	if (!isset($_SESSION['auth']) || $_SESSION['auth'] != 1) {
+		$app->redirect("/register");
+		return false;
+	}
+	
 	$smarty->display('social.tpl');		
 });
 
 $app->get("/chat", function () use ($smarty) {
+	if (!isset($_SESSION['auth']) || $_SESSION['auth'] != 1) {
+		$app->redirect("/register");
+		return false;
+	}
+	
 	$smarty->display('chat.tpl');
 });
 
