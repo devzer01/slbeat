@@ -174,6 +174,8 @@ $app->get('/step2', function () use ($smarty, $app) {
 		unset($_SESSION['error']);
 	}
 	
+	$pdo = getDbHandler();
+	
 	$id = $_SESSION['user_id'];
 	$sql = "SELECT step2 FROM user WHERE id = :id ";
 	$sth = $pdo->prepare($sql);

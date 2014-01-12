@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-01-12 15:06:06
+<?php /* Smarty version Smarty-3.1.16, created on 2014-01-13 01:40:11
          compiled from "templates/common/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:155378902452cfcd6c9200b9-14314856%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a679c2441bc57cd8a39726a7e94991c3039e7906' => 
     array (
       0 => 'templates/common/header.tpl',
-      1 => 1389513961,
+      1 => 1389535179,
       2 => 'file',
     ),
   ),
@@ -83,9 +83,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               </div>
                   <div class="collapse navbar-collapse navbar-ex1-collapse ">
                 <ul class="nav navbar-nav pull-right">
-                      <li class="active"><a href="#">Home</a></li>
-                      <li><a href="#">Intro</a></li>
-                      <li><a href="#">News</a></li>
+                      <li class="active"><a href="/">Home</a></li>
+                      <li><a href="/chat">Chat</a></li>
+                      <li><a href="/social">Social</a></li>
                     </ul>
               </div>
                 </nav>

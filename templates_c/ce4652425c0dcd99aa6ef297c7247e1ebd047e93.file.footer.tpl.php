@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-01-12 15:16:42
+<?php /* Smarty version Smarty-3.1.16, created on 2014-01-13 01:40:11
          compiled from "templates/common/footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:54732213952cfcd6c9a0f92-07243323%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ce4652425c0dcd99aa6ef297c7247e1ebd047e93' => 
     array (
       0 => 'templates/common/footer.tpl',
-      1 => 1389514288,
+      1 => 1389535150,
       2 => 'file',
     ),
   ),
@@ -36,6 +36,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         </div>
   </div>
     </div>
+    
+    <script>
+    
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46942077-1', 'slbeat.com');
+  ga('send', 'pageview');
+  
+	</script>
     
 </body>
 </html><?php }} ?>
