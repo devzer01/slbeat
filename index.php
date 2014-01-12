@@ -96,6 +96,12 @@ $app->get('/fblogin', function () use ($app, $smarty)
 		return false;
 	}
 	
+	if (time() - strtotime($user['updated_time']) < 72000) {
+		$_SESSION['register_error'] = 'Your facebook account does not match our required standards, try later';
+		$app->redirect("/nosignup", 301);
+		return false;
+	} 
+	
 	$pdo = getDbHandler();
 	$sql = "SELECT id, username, password, step2 FROM user WHERE fb_id = :fb_id LIMIT 1";
 	$sth = $pdo->prepare($sql);
