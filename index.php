@@ -206,6 +206,17 @@ $app->post('/savestep2', function () use ($app) {
 	
 	$pdo = getDbHandler();
 	
+	$sql = "SELECT step2 FROM user WHERE id = :id ";
+	$sth = $pdo->prepare($sql);
+	$sth->execute(array(':id' => $id));
+	
+	$of_user = $sth->fetch(PDO::FETCH_ASSOC);
+	
+	if ($of_user['step2'] == 1) {
+		$app->redirect("/home");
+		return false;
+	}
+	
 	$sql = "SELECT COUNT(*) cnt FROM user WHERE username = :username ";
 	$sth = $pdo->prepare($sql);
 	$sth->execute(array('username' => $_POST['username']));
