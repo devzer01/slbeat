@@ -289,7 +289,7 @@ $app->get('/test', function () {
 	phpinfo();
 });
 
-$app->get("/social", function () use ($smarty) {
+$app->get("/social", function () use ($smarty, $app) {
 	
 	if (!isset($_SESSION['auth']) || $_SESSION['auth'] != 1) {
 		$app->redirect("/register");
@@ -299,7 +299,7 @@ $app->get("/social", function () use ($smarty) {
 	$smarty->display('social.tpl');		
 });
 
-$app->get("/chat", function () use ($smarty) {
+$app->get("/chat", function () use ($smarty, $app) {
 	if (!isset($_SESSION['auth']) || $_SESSION['auth'] != 1) {
 		$app->redirect("/register");
 		return false;
