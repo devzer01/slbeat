@@ -96,11 +96,6 @@ $app->get('/fblogin', function () use ($app, $smarty)
 		return false;
 	}
 	
-	if (time() - strtotime($user['updated_time']) < 72000) {
-		$_SESSION['register_error'] = 'Your facebook account does not match our required standards, try later';
-		$app->redirect("/nosignup", 301);
-		return false;
-	} 
 	
 	$pdo = getDbHandler();
 	$sql = "SELECT id, username, password, step2 FROM user WHERE fb_id = :fb_id LIMIT 1";
@@ -129,11 +124,16 @@ $app->get('/fblogin', function () use ($app, $smarty)
 		$_SESSION['password'] = $user_row['password'];
 		
 		
-		$app->redirect("/home", 302);
+		$app->redirect("/chat", 302);
 		
 		return true;
 	}
 	
+	if (time() - strtotime($user['updated_time']) < 72000) {
+		$_SESSION['register_error'] = 'Your facebook account does not match our required standards, try later';
+		$app->redirect("/nosignup", 301);
+		return false;
+	} 
 	$errors = validateFbUserParams($user);
 	
 	if (count($errors) > 0) {
@@ -184,7 +184,7 @@ $app->get('/step2', function () use ($smarty, $app) {
 	$of_user = $sth->fetch(PDO::FETCH_ASSOC);
 	
 	if ($of_user['step2'] == 1) {
-		$app->redirect("/home");
+		$app->redirect("/chat");
 		return false;
 	}
 	
@@ -213,7 +213,7 @@ $app->post('/savestep2', function () use ($app) {
 	$of_user = $sth->fetch(PDO::FETCH_ASSOC);
 	
 	if ($of_user['step2'] == 1) {
-		$app->redirect("/home");
+		$app->redirect("/chat");
 		return false;
 	}
 	
@@ -260,7 +260,7 @@ $app->post('/savestep2', function () use ($app) {
 	$_SESSION['password'] = $_POST['password'];
 	$_SESSION['auth'] = 1;
 	
-	$app->redirect('/home', 302);
+	$app->redirect('/chat', 302);
 	
 	return true;
 });
@@ -356,7 +356,7 @@ $app->get("/chatroom", function () use ($smarty) {
 	
 	$user = $sth->fetch(PDO::FETCH_ASSOC);
 	
-	$smarty->assign('username', $user['username']);
+	$smarty->assign('username', strtolower($user['username']));
 	$smarty->assign('password', $user['password']);
 	$smarty->assign('host', OPENFIRE_HOST);
 	
