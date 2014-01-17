@@ -4,6 +4,7 @@ require_once('config.php');
 require_once 'vendor/autoload.php';
 require_once('smarty3/Smarty.class.php');
 require_once('db.php');
+require_once('lib.php');
 
 date_default_timezone_set('Asia/Bangkok');
 
@@ -28,6 +29,52 @@ $app->get('/fbauth', function () use ($app, $smarty) {
 
 $app->get('/register', function () use ($smarty) {
 	$smarty->display('register.tpl');
+});
+
+$app->post('/register', function () use ($smarty, $app) {
+	$email = $_POST['email'];
+	$gender = $_POST['gender'];
+	$code = md5(uniqid(rand(), TRUE));
+	
+	$pdo = getDbHandler();
+	$sql = "INSERT INTO verify_queue (email, gender, code, ip, created_date) VALUES (:email, :gender, :code, :ip, NOW()) ";
+	
+	$sth = $pdo->prepare($sql);
+	$sth->execute(array(':email' => $email, ':gender' => $gender, ':code' => $code, ':ip' => $_SERVER['REMOTE_ADDR']));
+	
+	$smarty->assign('code', $code);
+	
+	$message = $smarty->fetch('email/verify.tpl');
+	
+	sendMail($email, "Confirm Your SL Beat Registration", $message);
+	
+	$smarty->display('register_email_sent.tpl');
+});
+
+$app->get('/code/:code', function ($code) use ($smarty, $app) {
+	
+	$pdo = getDbHandler();
+	$sql = "SELECT id, email, gender FROM verify_queue WHERE code = :code AND verify_date IS NULL ";
+	$sth = $pdo->prepare($sql);
+	
+	if ($sth->rowCount() === 0) {
+		$smarty->display('invalid_code.tpl');
+		return true;
+	}
+	
+	$row = $sth->fetch(PDO::FETCH_ASSOC);
+	
+	$sql = "UPDATE verify_queue SET verify_date = NOW() WHERE id = :id ";
+	$sth = $pdo->prepare($sql);
+	$sth->execute(array(':id' => $row['id']));
+	
+	$sql = "INSERT INTO user (email, fb_gender) VALUES (:email, :gender) ";
+	$sth = $pdo->prepare($sql);
+	$sth->execute(array(':email' => $row['email'], ':gender' => $row['gender']));
+	
+	$_SESSION['user_id'] = $pdo->lastInsertId();
+	
+	$app->redirect("/step2");
 });
 
 $app->get('/nosignup', function () use ($smarty, $app) {
@@ -165,6 +212,28 @@ $app->get('/fblogin', function () use ($app, $smarty)
 	$app->redirect('/step2', 302);
 	
 	return true;
+});
+
+$app->get('/email/:email', function ($email) {
+	$pdo = getDbHandler();
+	
+	$sql = "SELECT COUNT(*) cnt FROM user WHERE email = :email ";
+	$sth = $pdo->prepare($sql);
+	$sth->execute(array('email' => $email));
+	
+	$row = $sth->fetch(PDO::FETCH_ASSOC);
+	
+	if ($row['cnt'] == 1) {
+		$return = array('valid' => 1);
+		header("Content-Type: application/json");
+		echo json_encode($return);
+		return;
+	}
+	
+	$return = array('valid' => 0);
+	header("Content-Type: application/json");
+	echo json_encode($return);
+	return;
 });
 
 $app->get('/step2', function () use ($smarty, $app) {

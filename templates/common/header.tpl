@@ -9,7 +9,9 @@
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<link rel="stylesheet" href="/css/prettyCheckable.css">
 	<script src="/js/jquery-1.10.2.min.js"></script>
+	<script src="/js/prettyCheckable.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script type='text/javascript' src="http://imsky.github.io/holder/holder.js"></script>
 	<script type="text/javascript" >
@@ -24,6 +26,7 @@
         		$('.carousel').carousel()
             });
 	</script>
+	<script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js'></script>
 	</head>
 	<body>
 <div class="log-header">
