@@ -13,6 +13,13 @@
 	<script src="/js/bootstrap.min.js"></script>
 	<script type='text/javascript' src="http://imsky.github.io/holder/holder.js"></script>
 	<script type="text/javascript" >
+
+	    if(typeof String.prototype.trim !== 'function') {
+  		String.prototype.trim = function() {
+    			return this.replace(/^\s+|\s+$/g, ''); 
+  		}
+	    }
+
             $(document).ready(function() {        
         		$('.carousel').carousel()
             });

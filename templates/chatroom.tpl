@@ -11,8 +11,9 @@
 		<script type="text/javascript" src="/candy/candy.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				Candy.init('http-bind/', {
-					core: { debug: true, autojoin: ['{$smarty.const.OPENFIRE_ROOM}'] },
+				Candy.Util.setCookie('candy-nostatusmessages', '1', 365);
+				Candy.init('http-bind2/', {
+					core: { debug: false, autojoin: ['{$smarty.const.OPENFIRE_ROOM}'] },
 					view: { resources: '/candy/res/' }
 				});
 				

@@ -1,8 +1,9 @@
 {include file='common/header.tpl'}
 
 <div style='margin-top: 20px;' class='well'>
-	To complete registration, please select a username and password. <br/>
-	Please note username choice is final and you will not be allowed to change username in the future. Please choose wisley. 
+	To complete registration, please select a username and password. This username is used as nickname in our chat site <br/>
+	Please note username choice is final and you will not be allowed to change username in the future. Please choose wisley.<br/>
+	Username can only contain (a-z) letters (0-9) numbers (.) period and (_)underscore. 
 </div>
 
 {if (isset($error)) }
