@@ -4,4 +4,8 @@
 	<iframe src='/chatroom' style='border: 0 none;width: 903px; height: 623px;'></iframe>
 </div>
 
+<div class='well' style='margin-top: 10px;'>
+	ඔබ මෙම කතා කුඩුව තුල අශිලාචාර අයුරින් කටයුතු කළහොත් ඔබගේ සේවාව අපි විසින් අත් හිටවනු ලැබේ
+</div>
+
 {include file='common/footer.tpl'}
