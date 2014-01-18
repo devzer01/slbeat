@@ -27,3 +27,24 @@ function sendMail($email, $subject, $message)
 		
 	return true;
 }
+
+
+function validateFbUserParams(&$user) {
+	$default_user = array('birthday' => null, 'first_name' => null, 'last_name' => null, 'username' => null,
+			'gender' => null, 'bio' => null, 'hometown' => null, 'location' => null, 'religion' => null);
+
+	$errors = array('birthday' => "Date of birth", 'first_name' => "First Name", 'last_name' => "Last Name", 'username' => null,
+			'gender' => "Gender", 'bio' => null, 'hometown' => "Hometown", 'location' => "Location", 'religion' => null);
+
+	$user = array_merge($default_user, $user);
+
+	$error = array();
+
+	foreach (array_keys($default_user) as $key) {
+		if ($user[$key] === null && $errors[$key] !== null) {
+			$error[] = $errors[$key];
+		}
+	}
+
+	return $error;
+}

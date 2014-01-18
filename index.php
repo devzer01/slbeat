@@ -31,16 +31,63 @@ $app->get('/register', function () use ($smarty) {
 	$smarty->display('register.tpl');
 });
 
-$app->post('/register', function () use ($smarty, $app) {
-	$email = $_POST['email'];
-	$gender = $_POST['gender'];
-	$code = md5(uniqid(rand(), TRUE));
+$app->get('/login', function () use ($smarty) {
+	$smarty->display('login.tpl');
+});
+
+$app->post('/login', function () use ($app, $smarty) {
+	
+	if (!isset($_POST['username']) || !isset($_POST['password']) || trim($_POST['username']) == "" || trim($_POST['password']) == "") {
+		$smarty->assign('error', 'Please provide username and password to login');
+		$smarty->display('login.tpl');
+		return;
+	}
 	
 	$pdo = getDbHandler();
-	$sql = "INSERT INTO verify_queue (email, gender, code, ip, created_date) VALUES (:email, :gender, :code, :ip, NOW()) ";
-	
+	$sql = "SELECT id, fb_id, username, password FROM user WHERE username = :username AND password = :password "; //ADD DISABLE CHECK
 	$sth = $pdo->prepare($sql);
-	$sth->execute(array(':email' => $email, ':gender' => $gender, ':code' => $code, ':ip' => $_SERVER['REMOTE_ADDR']));
+	$sth->execute(array(':username' => $_POST['username'], ':password' => $_POST['password']));
+	
+	if ($sth->rowCount() == 0) {
+		$smarty->assign('error', 'incorrect username and password');
+		$smarty->display('login.tpl');
+		return;
+	}
+	
+	$user_row = $sth->fetch(PDO::FETCH_ASSOC);
+	
+	$_SESSION['auth'] = 1;
+	$_SESSION['user_id'] = $user_row['id'];
+	$_SESSION['fb_id'] = $user_row['fb_id'];
+	$_SESSION['username'] = $user_row['username'];
+	$_SESSION['password'] = $user_row['password'];
+	
+	$app->redirect("/chat", 302);
+});
+
+$app->post('/register', function () use ($smarty, $app) {
+	$pdo = getDbHandler();
+	
+	$sql = "SELECT id, code FROM verify_queue WHERE email = :email ";
+	$sth = $pdo->prepare($sql);
+	$sth->execute(array(':email' => $email));
+	
+	$code = 0;
+	
+	if ($sth->rowCount() == 0) {
+		
+		$email = $_POST['email'];
+		$gender = $_POST['gender'];
+		$code = md5(uniqid(rand(), TRUE));
+		
+		$sql = "INSERT INTO verify_queue (email, gender, code, ip, created_date) VALUES (:email, :gender, :code, :ip, NOW()) ";
+	
+		$sth = $pdo->prepare($sql);
+		$sth->execute(array(':email' => $email, ':gender' => $gender, ':code' => $code, ':ip' => $_SERVER['REMOTE_ADDR']));
+	} else {
+		$row = $sth->fetch(PDO::FETCH_ASSOC);
+		$code = $row['code'];
+	}
 	
 	$smarty->assign('code', $code);
 	
@@ -54,8 +101,10 @@ $app->post('/register', function () use ($smarty, $app) {
 $app->get('/code/:code', function ($code) use ($smarty, $app) {
 	
 	$pdo = getDbHandler();
-	$sql = "SELECT id, email, gender FROM verify_queue WHERE code = :code AND verify_date IS NULL ";
+	$sql = "SELECT id, email, gender FROM verify_queue WHERE code = :code AND verified_time IS NULL ";
 	$sth = $pdo->prepare($sql);
+	
+	$sth->execute(array(':code' => $code));
 	
 	if ($sth->rowCount() === 0) {
 		$smarty->display('invalid_code.tpl');
@@ -64,7 +113,7 @@ $app->get('/code/:code', function ($code) use ($smarty, $app) {
 	
 	$row = $sth->fetch(PDO::FETCH_ASSOC);
 	
-	$sql = "UPDATE verify_queue SET verify_date = NOW() WHERE id = :id ";
+	$sql = "UPDATE verify_queue SET verified_time = NOW() WHERE id = :id ";
 	$sth = $pdo->prepare($sql);
 	$sth->execute(array(':id' => $row['id']));
 	
@@ -449,23 +498,3 @@ $app->get('/', function () use ($app, $smarty) {
 });
 
 $app->run();
-
-function validateFbUserParams(&$user) {
-	$default_user = array('birthday' => null, 'first_name' => null, 'last_name' => null, 'username' => null, 
-			'gender' => null, 'bio' => null, 'hometown' => null, 'location' => null, 'religion' => null);
-	
-	$errors = array('birthday' => "Date of birth", 'first_name' => "First Name", 'last_name' => "Last Name", 'username' => null,
-			'gender' => "Gender", 'bio' => null, 'hometown' => "Hometown", 'location' => "Location", 'religion' => null);
-	
-	$user = array_merge($default_user, $user);
-	
-	$error = array();
-	
-	foreach (array_keys($default_user) as $key) {
-		if ($user[$key] === null && $errors[$key] !== null) {
-			$error[] = $errors[$key];
-		}
-	}
-	
-	return $error;
-}

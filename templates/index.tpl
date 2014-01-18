@@ -7,7 +7,7 @@
                   <div class="col-md-4"></div>
                   <div class="col-md-4">
                 <ul class="Social-media pull-right">
-                      <li><a href="#"><img src="img/fb.png"></a></li>
+                      <li><a href="http://www.facebook.com/slbeatweb"><img src="img/fb.png"></a></li>
                       <li><a href="#"><img src="img/twitter.png"></a></li>
                       <li><a href="#"><img src="img/u-tube.png"></a></li>
                       <li><a href="#"><img src="img/flicker.png"></a></li>
@@ -15,7 +15,7 @@
               </div>
                   <div class="col-md-4">
                 <div class="members pull-right">
-                      <h5>Toatal Members</h5>
+                      <h5>Total Members</h5>
                       <span class="big-ball pull-right"> {$smarty.session.members} </span> </div>
               </div>
                 </div>

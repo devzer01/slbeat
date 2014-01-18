@@ -41,7 +41,7 @@
             	{if (isset($smarty.session.auth) && $smarty.session.auth eq "1")}
             		<li><a href="/home">{$smarty.session.username}</a> </li>
             	{else}
-            		<li><a href="/home">Login</a> </li>
+            		<li><a href="/login">Login</a> </li>
             	{/if}
             <li><span> | </span> </li>
             	{if (isset($smarty.session.auth) && $smarty.session.auth eq "1")}
