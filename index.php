@@ -65,6 +65,28 @@ $app->post('/login', function () use ($app, $smarty) {
 	$app->redirect("/chat", 302);
 });
 
+$app->get('/roster/:username', function ($username) use ($app) {
+	
+	$pdo = getDbHandler();
+	$sql = "SELECT fb_id, fb_gender FROM user WHERE username = :username ";
+	$sth = $pdo->prepare($sql);
+	$sth->execute(array(':username' => $username));
+	
+	$fb = 0;
+	$gender = 'male';
+	
+	if ($sth->rowCount() != 0) {
+		$row = $sth->fetch(PDO::FETCH_ASSOC);
+		
+		if (trim($row['fb_id']) != "") $fb = 1;
+		$gender = $row['fb_gender'];
+	}
+	
+	$json = array('fb' => $fb, 'gender' => $gender);
+	$app->contentType("application/json");
+	echo json_encode($json);
+});
+
 $app->post('/register', function () use ($smarty, $app) {
 	
 	$email = $_POST['email'];

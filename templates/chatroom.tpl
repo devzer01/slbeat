@@ -17,6 +17,37 @@
 					view: { resources: '/candy/res/' }
 				});
 				
+				$(Candy).on('candy:view.roster.after-update', function(evnt, args) {
+					
+					console.log('Roster update called ' + args.action);
+					
+					if (args.action != "join") return true;
+					
+					var nickname = args.user.getNick();
+					
+					var attr = {};
+					attr.url = '/roster/' + nickname;
+					attr.type = 'get';
+					attr.dataType = 'json';
+					attr.success = function (json) {
+						if (json.fb == 1) {
+							args.element.addClass("fbauth");
+							args.element.find("ul").append('<li class="fbauth">(FB)</li>');
+						} 
+						
+						if (json.gender == "male") {
+							args.element.addClass("male");
+						} else {
+							args.element.addClass("female");
+						}
+						
+						
+					}
+					
+					$.ajax(attr);
+					
+				});
+				
 				Candy.Core.connect('{$username}@{$host}', '{$password}');
 			});
 		</script>
