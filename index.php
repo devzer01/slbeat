@@ -66,6 +66,10 @@ $app->post('/login', function () use ($app, $smarty) {
 });
 
 $app->post('/register', function () use ($smarty, $app) {
+	
+	$email = $_POST['email'];
+	$gender = $_POST['gender'];
+	
 	$pdo = getDbHandler();
 	
 	$sql = "SELECT id, code FROM verify_queue WHERE email = :email ";
@@ -75,9 +79,6 @@ $app->post('/register', function () use ($smarty, $app) {
 	$code = 0;
 	
 	if ($sth->rowCount() == 0) {
-		
-		$email = $_POST['email'];
-		$gender = $_POST['gender'];
 		$code = md5(uniqid(rand(), TRUE));
 		
 		$sql = "INSERT INTO verify_queue (email, gender, code, ip, created_date) VALUES (:email, :gender, :code, :ip, NOW()) ";
