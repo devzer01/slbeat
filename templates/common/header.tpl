@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="utf8">
 	<head>
 	<title>SL Beat - Sri Lankan Community</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
 	<!-- Bootstrap -->
 	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="/css/main.css" rel="stylesheet" media="screen">
