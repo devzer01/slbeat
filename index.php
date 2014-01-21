@@ -490,7 +490,7 @@ $app->get("/chatroom", function () use ($smarty) {
 	$pdo = getDbHandler();
 	
 	$id = $_SESSION['user_id'];
-	$sql = "SELECT username, password FROM user WHERE id = :id";
+	$sql = "SELECT username, password, fb_gender FROM user WHERE id = :id";
 	$sth = $pdo->prepare($sql);
 	
 	$sth->execute(array(':id' => $id));
@@ -499,6 +499,7 @@ $app->get("/chatroom", function () use ($smarty) {
 	
 	$smarty->assign('username', strtolower($user['username']));
 	$smarty->assign('password', $user['password']);
+	$smarty->assign('gender', $user['fb_gender']);
 	$smarty->assign('host', OPENFIRE_HOST);
 	
 	$smarty->display('chatroom.tpl');
