@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="/candy/res/default.css" />
 
         <script type="text/javascript" src="/candy/libs/libs.min.js"></script>
+		<script type="text/javascript" src="/candy/libs/jquery-i18n/jquery.i18n.js"></script>
 		<script type="text/javascript" src="/candy/src/candy.js"></script>
 		<script type="text/javascript" src="/candy/src/core.js"></script>
 		<script type="text/javascript" src="/candy/src/util.js"></script>
@@ -42,7 +43,7 @@
 				
 				$(Candy).on('candy:view.roster.after-update', function(evnt, args) {
 					
-					console.log('Roster update called ' + args.action);
+					//console.log('Roster update called ' + args.action);
 					
 					if (args.action != "join") return true;
 					
@@ -55,7 +56,7 @@
 					attr.success = function (json) {
 						if (json.fb == 1) {
 							args.element.addClass("fbauth");
-							args.element.find("ul").append('<li class="fbauth">(FB)</li>');
+							args.element.find("ul").append('<li class="fbauth"></li>');
 						} 
 						
 						if (json.gender == "male") {
@@ -74,7 +75,7 @@
 				$(Candy).on('candy:view.message.before-show', function (evnt, args) {
 					
 					if (blocked && whitelist.indexOf(args.roomJid) == -1) {
-						console.log("PM blocked");
+						//console.log("PM blocked");
 						args.message = null;
 					}
 					
@@ -83,10 +84,10 @@
 				$(Candy).on('candy:view.message.before-send', function (evnt, args) {
 					if (blocked) {
 						if (whitelist.indexOf(args.jid) == -1) {
-							console.log("adding to whitelist");
+							//console.log("adding to whitelist");
 							whitelist.push(args.jid);
 						} else {
-							console.log("Already in whitelist");
+							//console.log("Already in whitelist");
 						}
 					}
 					return args;

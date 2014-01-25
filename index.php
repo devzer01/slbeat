@@ -477,6 +477,7 @@ $app->get("/chat", function () use ($smarty, $app) {
 		return false;
 	}
 	
+	#$app->redirect("/chatroom");
 	$smarty->display('chat.tpl');
 });
 
