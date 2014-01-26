@@ -12,12 +12,13 @@
         <select name='channel' id='channel'>
         	<option value='0'>Y.FM</option>
         	<option value='1'>Yes.FM</option>
+        	<option value='2'>Sun.FM</option>
         </select>
         <button id='play'>Play</button>
 </div>
 
 <script type='text/javascript'>
-	var channel_list = ["http://76.164.217.100:7036/;stream.mp3", "http://76.164.217.100:7030/;stream.mp3"];
+	var channel_list = ["http://76.164.217.100:7036/;stream.mp3", "http://76.164.217.100:7030/;stream.mp3", "http://69.64.57.21:8090/;stream.mp3"];
 	
 	function updateSource(index)
     { 

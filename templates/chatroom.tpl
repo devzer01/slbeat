@@ -96,7 +96,7 @@
 				$(Candy).on('candy:view.room.before-add', function (evnt, args) {
 					if (whitelist.indexOf(args.jid) == -1 && blocked) {
 						args.block = true;
-						Candy.Core.Action.Jabber.Room.Message(args.jid, "This user have turned off private messaging", 'chat');
+						Candy.Core.Action.Jabber.Room.Message(args.jid, "This user have turned off private messaging, ask them to message you first", 'chat');
 					}
 				});
 				
