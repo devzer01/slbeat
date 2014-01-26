@@ -9,17 +9,17 @@ a {
 }
 .blue-bar-left {
 	background:url(../img/top-header-left.jpg) no-repeat;
-	height:47px;
+	height:35px;
 }
 .log-header {
 	background:url(../img/top-bg.jpg) no-repeat;
 }
 .top-log-menu {
 	background:#FFF;
-	height:47px;
+	height:35px;
 }
 .top-log-menu.pull-right a {
-	font-size:18px;
+	font-size:14px;
 	color:#3e8bda;
 	vertical-align:bottom;
 }
@@ -30,7 +30,7 @@ a {
 	float:left;
 	list-style:none;
 	margin-left:10px;
-	margin-top:10px;
+	margin-top:7px;
 }
 .middle-menu {
 	background:#3f8ddd;
@@ -82,13 +82,13 @@ a {
 }
 .big-bg {
 	background:url(../img/big-bg.jpg) no-repeat;
-	min-height:632px;
+	min-height:600px;
 }
 .main-box {
 	background:url(../img/nav-bg.png);
 	box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.3);
 	padding:7% 4%;
-	margin-top:7%;
+	margin-top:1.5%;
 }
 .main-box .media-heading {
 	font-size:25px;
@@ -163,6 +163,17 @@ a {
 	background:#3f8ddd;
 	padding:1.5% 0 1%;
 }
+
+.logo img{
+	margin-top:-27px;
+	
+}
+.navbar-nav > li > a{
+	
+padding-top: 17px;
+}
+
+
  @media (min-width: 769px) and (max-width: 1190px) {
  .navbar-default .navbar-nav > li > a {
  font-size: 16px;
@@ -218,6 +229,20 @@ a {
  margin-bottom:25px;
 }
 }
+
+
+ @media (min-width: 0px) and (max-width: 1040px) {
+	 .blue-bar-left{
+		 background-image:none;
+ }
+ 
+ .logo img{
+	margin-top:-0px;
+	
+}
+ 
+ }
+
  @media (min-width: 0px) and (max-width: 769px) {
  body {
  text-align:center;
@@ -321,6 +346,21 @@ a {
  .footer p {
  color: #FFFFFF;
  font-size: 10px;
+}
+
+
+.top-log-menu.pull-right ul {
+    margin: auto;
+    padding-left: inherit;
+    width: 210px;
+}
+
+.middle-menu{
+	margin-top:7px;
+}
+
+.main-box{
+	margin-top:7%;
 }
 }
  @media (max-width: 767px) {
