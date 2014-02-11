@@ -5,7 +5,7 @@
 </div>
 
 <div style='float: left; width: 100%; margin-top: 10px;'>
-    	<audio id='audio' controls autoplay>
+    	<audio id='audio' controls>
         	<source id='stream' src="http://76.164.217.100:7036/;stream.mp3" type="audio/mpeg"></source>
             Your browser does not support the audio element.
         </audio>

@@ -61,6 +61,8 @@
 						
 						if (json.gender == "male") {
 							args.element.addClass("male");
+						} else if (json.gender == "droid") {
+							args.element.addClass("droid");
 						} else {
 							args.element.addClass("female");
 						}
