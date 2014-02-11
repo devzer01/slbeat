@@ -75,6 +75,10 @@ $app->get('/roster/:username', function ($username) use ($app) {
 	$fb = 0;
 	$gender = 'droid';
 	
+	if ($username == 'devmobile') {
+		$gender = 'male';
+	}
+	
 	if ($sth->rowCount() != 0) {
 		$row = $sth->fetch(PDO::FETCH_ASSOC);
 		
